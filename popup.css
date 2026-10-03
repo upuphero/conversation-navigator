@@ -1,0 +1,19 @@
+body {
+  width: 300px; margin: 0; padding: 20px;
+  font: 13px/1.7 system-ui, sans-serif; color: #343840; background: #fff;
+}
+h1 { margin: 0 0 16px; font-size: 16px; }
+h1 span { font-size: 11px; color: #858993; font-weight: 400; }
+#status { margin: 0 0 8px; font-weight: 600; }
+#detail { min-height: 44px; margin: 0 0 16px; color: #737783; overflow-wrap: anywhere; white-space: pre-line; }
+button {
+  width: 100%; padding: 9px 12px; border: 0; border-radius: 8px;
+  background: #6873ed; color: #fff; cursor: pointer; font: inherit;
+}
+button:disabled { opacity: .6; cursor: wait; }
+button:focus-visible { outline: 2px solid #6873ed; outline-offset: 3px; }
+.help { margin: 16px 0 0; font-size: 11px; color: #858993; }
+@media (prefers-color-scheme: dark) {
+  body { color: #ededf4; background: #25252c; }
+  #detail, .help, h1 span { color: #b1b1bd; }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "conversation-navigator",
+  "version": "0.1.4",
+  "private": true,
+  "description": "A dependency-free Chrome extension for navigating ChatGPT conversations.",
+  "scripts": {
+    "check": "node --check content.js && node --check popup.js && node --check tests/browser.test.cjs",
+    "test": "node --test tests/browser.test.cjs"
+  }
+}

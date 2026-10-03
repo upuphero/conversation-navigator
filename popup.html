@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>对话导航状态</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>对话导航 <span id="version"></span></h1>
+  <p id="status" role="status">正在检查当前标签页…</p>
+  <p id="detail"></p>
+  <button id="rescan" type="button">重新检查并扫描</button>
+  <p class="help">更新插件后：先在 chrome://extensions 点击插件卡片上的 ↻，再刷新 ChatGPT 对话页。</p>
+  <script src="popup.js"></script>
+</body>
+</html>
