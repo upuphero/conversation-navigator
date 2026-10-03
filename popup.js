@@ -19,7 +19,7 @@ async function checkStatus() {
       detail.textContent = "请刷新 ChatGPT 对话页，再打开此窗口检查。";
     } else if (response.questionCount > 0 && response.visible) {
       status.textContent = `脚本已连接 · 已识别 ${response.questionCount} 个问题`;
-      detail.textContent = "导航位于网页右侧中部。悬停查看问题，点击跳到对应回答。";
+      detail.textContent = "导航位于网页右侧中部。悬停查看问题，点击跳到你发送的消息。";
       detail.textContent += `\n已收到导航点击：${response.clickCount || 0} 次。`;
       if (response.lastJump) {
         const jump = response.lastJump;

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Conversation Navigator · 对话导航",
-  "version": "0.1.4",
-  "description": "在 ChatGPT 右侧显示问题导航：悬停查看提问，点击跳到对应回答。",
+  "version": "0.1.5",
+  "description": "在 ChatGPT 右侧显示问题导航：悬停查看提问，点击跳到你发送的消息。",
   "action": {
     "default_title": "对话导航 · 查看运行状态",
     "default_popup": "popup.html"

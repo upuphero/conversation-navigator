@@ -2,7 +2,7 @@
   "use strict";
 
   const HOST_ID = "conversation-navigator-extension";
-  const VERSION = "0.1.4";
+  const VERSION = "0.1.5";
   if (document.getElementById(HOST_ID)) return;
   // Install before the page's delegated handlers. Only events from our own
   // shadow buttons are consumed; ordinary page interaction passes through.
@@ -425,7 +425,7 @@
     }
     previewedIndex = index;
     previewIndex.textContent = `${String(index + 1).padStart(2, "0")} / ${entries.length}`;
-    previewHint.textContent = entries[index].answer ? "点击短横杠，跳到对应回答" : "回答尚未出现，点击查看提问";
+    previewHint.textContent = "点击短横杠，跳到这条提问";
     list.children[index].setAttribute("aria-describedby", preview.id);
     preview.hidden = false;
     positionPreview(index);
@@ -439,11 +439,11 @@
     const readingLine = bounds.top + Math.min(160, (bounds.bottom - bounds.top) * 0.28);
     let next = 0;
     for (let index = 0; index < entries.length; index++) {
-      const target = scrollAnchor(entries[index].answer || entries[index].question);
+      const target = scrollAnchor(entries[index].question);
       if (!target) continue;
       if (target.getBoundingClientRect().top <= readingLine) next = index;
     }
-    // At the bottom, a short final reply may never reach the reading line.
+    // At the bottom, the final question may sit below the reading line.
     const scroller = scrollContainer;
     const range = scrollRange(scroller);
     if (scroller.scrollHeight > scroller.clientHeight + 1
@@ -511,7 +511,7 @@
         const currentIndex = entries.findIndex(item => item.key === selected.key);
         if (currentIndex >= 0) {
           showPreview(currentIndex);
-          previewHint.textContent = "未能定位这条回答，请点插件图标查看跳转状态。";
+          previewHint.textContent = "未能定位这条提问，请点插件图标查看跳转状态。";
         }
       }
     }
@@ -527,14 +527,11 @@
         const fresh = collectEntries().find(item => item.key === selected.key);
         if (fresh) {
           selected.identity = fresh.identity;
-          if (fresh.answerIdentity) selected.answerIdentity = fresh.answerIdentity;
         }
-        // Preserve the clicked response identity even while its entire role
+        // Preserve the clicked prompt identity even while its entire role
         // marker is absent. A temporary unmount isn't a reason to jump elsewhere.
-        const response = resolveIdentity(selected.answerIdentity);
-        const question = resolveIdentity(selected.identity);
-        const resolved = selected.answerIdentity ? response : question;
-        const target = resolved?.anchor || question?.anchor;
+        const resolved = resolveIdentity(selected.identity);
+        const target = resolved?.anchor;
         lastJump.attempts++;
         if (target) {
           scrollContainer = findScrollContainer(target);
